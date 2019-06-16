@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./lib/vue_2.2.2.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <p v-for="(item, i) in list" >索引--{{i}}值是--{{item}}</p>
+        <!-- <p :style="{'color': 'red'}" v-for="value in 10">{{value }}</p> -->
+        <input type="text"  v-model="id">
+        <input type="text"  v-model="name">
+        <input type="button" value="添加" @click="add">
+        <p v-for="user in users" :key="user.id">
+            <input type="checkbox">
+            'id': {{user.id}}---'name': {{user.name}}
+        </p>
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                list: ['wanqiu', 'xiaomiao', 'darling'],
+                users: [
+                    {'id': 1, 'name': 'xiaomiao'},
+                    {'id': 2, 'name': 'xiatian'},
+                    {'id': 3, 'name': 'wanqiu'}
+                ]
+            },
+            methods: {
+                add (){
+                    this.users.unshift({'id': this.id, 'name': this.name})
+                    this.id = this.name = ''
+                    this.users.findIndex(item => {
+                        alert(item.name)
+                    })
+                }
+            }
+        })
+        
+    </script>
+    
+</body>
+</html>
